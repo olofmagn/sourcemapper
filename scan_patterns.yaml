@@ -1,0 +1,288 @@
+# Scan rules for sourcemapper
+#
+# Rule keys:
+#   label      - Display name shown in scan results
+#   pattern    - Regular expression
+#   ignorecase - Enables case-insensitive matching
+#
+# Sources:
+#     https://github.com/mazen160/secrets-patterns-db
+#     https://github.com/m4ll0k/SecretFinder
+#     https://github.com/GerbenJavado/LinkFinder
+#     https://github.com/Lu3ky13/Search-for-all-leaked-keys-secrets-using-one-regex-
+
+rules:
+  - label: 'AWS access key id'
+    pattern: '(?:A3T[A-Z0-9]|AKIA|AGPA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}'
+
+  - label: 'AWS S3 bucket URL'
+    pattern: '(?:[a-zA-Z0-9._-]{1,63}\.s3(?:[.-][a-z0-9-]+)?\.amazonaws\.com|s3://[a-zA-Z0-9._-]+|s3\.amazonaws\.com/[a-zA-Z0-9._-]+|s3\.console\.aws\.amazon\.com/s3/buckets/[a-zA-Z0-9._-]+)'
+    ignorecase: true
+
+  - label: 'AWS AppSync GraphQL key'
+    pattern: '\bda2-[a-z0-9]{26}\b'
+    ignorecase: true
+
+  - label: 'Google API key'
+    pattern: 'AIza[0-9A-Za-z_-]{35}'
+
+  - label: 'Google OAuth token'
+    pattern: 'ya29\.[0-9A-Za-z_-]+'
+
+  - label: 'Slack token'
+    pattern: 'xox[obaprs]-[0-9a-zA-Z]{10,48}'
+
+  - label: 'Stripe live key'
+    pattern: '[rs]k_live_[0-9a-zA-Z]{24}'
+
+  - label: 'Twilio Account SID / API key'
+    pattern: '\bAC[0-9a-fA-F]{32}\b|\bSK[0-9a-fA-F]{32}\b'
+
+  - label: 'GitHub token'
+    pattern: 'gh[pousr]_[0-9A-Za-z]{36,}'
+
+  - label: 'GitLab personal access token'
+    pattern: '\bglpat-[a-zA-Z0-9\-=_]{20,22}\b'
+
+  - label: 'JWT'
+    pattern: 'eyJ[A-Za-z0-9_-]{6,}\.[A-Za-z0-9_-]{6,}\.[A-Za-z0-9_-]{6,}'
+
+  - label: 'Private key header (PEM)'
+    pattern: '-----BEGIN (?:RSA |EC |DSA |OPENSSH |PGP )?PRIVATE KEY(?: BLOCK)?-----'
+
+  - label: 'Authorization Bearer'
+    pattern: 'bearer\s+[a-zA-Z0-9_\-.=:+/]{8,100}'
+    ignorecase: true
+
+  - label: 'Authorization Basic'
+    pattern: 'basic\s+[a-zA-Z0-9=:_+/-]{8,100}'
+    ignorecase: true
+
+  - label: 'Adafruit IO key'
+    pattern: '\baio_[a-zA-Z0-9]{28}\b'
+
+  - label: 'Alibaba access key'
+    pattern: '\bLTAI[a-zA-Z0-9]{17,21}\b'
+
+  - label: 'Apify API key'
+    pattern: '\bapify_api_[a-zA-Z0-9-]{36}\b'
+
+  - label: 'Bitly secret key'
+    pattern: '\bR_[0-9a-f]{32}\b'
+    ignorecase: true
+
+  - label: 'Braintree access token'
+    pattern: 'access_token\$production\$[0-9a-z]{16}\$[0-9a-f]{32}'
+    ignorecase: true
+
+  - label: 'Databricks token'
+    pattern: '\bdapi[a-f0-9]{32}\b'
+    ignorecase: true
+
+  - label: 'Discord webhook'
+    pattern: 'https://discord(?:app)?\.com/api/webhooks/[0-9]{17,19}/[0-9A-Za-z-]+'
+
+  - label: 'Doppler token'
+    pattern: '\bdp\.pt\.[a-zA-Z0-9]{43}\b'
+
+  - label: 'Dropbox token'
+    pattern: '\bsl\.[A-Za-z0-9_-]{130,140}\b'
+
+  - label: 'Dynatrace token'
+    pattern: '\bdt0[a-zA-Z][0-9]{2}\.[A-Z0-9]{24}\.[A-Z0-9]{64}\b'
+
+  - label: 'Frame.io token'
+    pattern: '\bfio-u-[0-9a-zA-Z_-]{64}\b'
+
+  - label: 'Linear API key'
+    pattern: '\blin_api_[0-9A-Za-z]{40}\b'
+
+  - label: 'Mailchimp API key'
+    pattern: '\b[0-9a-f]{32}-us[0-9]{1,2}\b'
+    ignorecase: true
+
+  - label: 'Mapbox secret token'
+    pattern: '\bsk\.[a-zA-Z0-9.-]{80,240}\b'
+
+  - label: 'New Relic Admin API key'
+    pattern: '\bNRAA-[a-f0-9]{27}\b'
+    ignorecase: true
+
+  - label: 'New Relic Insights API key'
+    pattern: '\bNRI(?:I|Q)-[A-Za-z0-9_-]{32}\b'
+
+  - label: 'New Relic REST API key'
+    pattern: '\bNRRA-[a-f0-9]{42}\b'
+    ignorecase: true
+
+  - label: 'New Relic Synthetics location key'
+    pattern: '\bNRSP-[a-z]{2}[0-9]{2}[a-f0-9]{31}\b'
+    ignorecase: true
+
+  - label: 'Notion token'
+    pattern: '\bsecret_[A-Za-z0-9]{43}\b'
+
+  - label: 'SendGrid API key'
+    pattern: '\bSG\.[A-Za-z0-9_-]{20,24}\.[A-Za-z0-9_-]{39,50}\b'
+
+  - label: 'Shopify access token'
+    pattern: '\bshpat_[a-fA-F0-9]{32}\b'
+
+  - label: 'Shopify custom app access token'
+    pattern: '\bshpca_[a-fA-F0-9]{32}\b'
+
+  - label: 'Shopify private app access token'
+    pattern: '\bshppa_[a-fA-F0-9]{32}\b'
+
+  - label: 'Shopify shared secret'
+    pattern: '\bshpss_[a-fA-F0-9]{32}\b'
+
+  - label: 'Square access token'
+    pattern: '\b(?:sq0atp-[0-9A-Za-z_-]{22}|EAAA[a-zA-Z0-9]{60})\b'
+
+  - label: 'Square OAuth secret'
+    pattern: '\bsq0[a-z]{3}-[0-9A-Za-z_-]{22,43}\b'
+
+  - label: 'Telegram Bot API key'
+    pattern: '\b[0-9]+:AA[0-9A-Za-z_-]{33}\b'
+
+  - label: 'Firebase server key'
+    pattern: 'AAAA[A-Za-z0-9_-]{7}:[A-Za-z0-9_-]{140}'
+
+  - label: 'Google reCAPTCHA key'
+    pattern: '\b6L[0-9A-Za-z_-]{38}\b'
+
+  - label: 'Amazon MWS auth token'
+    pattern: 'amzn\.mws\.[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+    ignorecase: true
+
+  - label: 'Facebook access token'
+    pattern: 'EAACEdEose0cBA[0-9A-Za-z]+'
+
+  - label: 'Mailgun API key'
+    pattern: 'key-[0-9a-zA-Z]{32}'
+
+  - label: 'Twilio App SID'
+    pattern: '\bAP[a-zA-Z0-9_-]{32}\b'
+
+  - label: 'API key / secret assignment'
+    pattern: '(api[_-]?key|apikey|client[_-]?secret|secret[_-]?key|access[_-]?token|auth[_-]?token)["''`]?\s*[:=]\s*["''`][0-9a-zA-Z_\-]{8,}["''`]'
+    ignorecase: true
+
+  - label: 'Password / credential assignment'
+    pattern: '(password|passwd|pwd)\s*[:=]\s*["''`][^"''`]{4,}["''`]'
+    ignorecase: true
+
+  - label: 'Bare token/secret assignment'
+    pattern: '(?:secret|token)\s*[:=]\s*["''`][a-zA-Z0-9_-]{8,}["''`]'
+    ignorecase: true
+    
+  - label: 'Credentials embedded in URL'
+    pattern: '[a-z][a-z0-9+.-]{0,20}://[^/\s:@"''`]{1,256}:[^/\s@"''`]{1,256}@'
+    ignorecase: true
+
+  - label: 'Azure host (blob / websites / api)'
+    pattern: '[a-z0-9]{1,63}\.(?:blob\.core\.windows\.net|azurewebsites\.net|azure-api\.net)'
+    ignorecase: true
+
+  - label: 'AWS Cognito / execute-api host'
+    pattern: '[a-z0-9-]{1,63}\.(?:cognito-idp|execute-api)\.[a-z0-9-]{1,63}\.amazonaws\.com'
+    ignorecase: true
+
+  - label: 'Internal hostname (scheme-qualified)'
+    pattern: 'https?://[a-z0-9.-]+\.(?:internal|intranet|corp|lan|local)\b'
+    ignorecase: true
+
+  - label: 'Email address'
+    pattern: '[A-Za-z0-9._%+-]{1,64}@[A-Za-z0-9.-]{1,255}\.[A-Za-z]{2,24}'
+    ignorecase: true
+
+  - label: 'Private IP address'
+    pattern: '\b(?:10\.\d{1,3}|192\.168|172\.(?:1[6-9]|2\d|3[01]))\.\d{1,3}\.\d{1,3}'
+
+  - label: 'Public IPv4 address'
+    pattern: '\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b'
+
+  - label: 'IP:port'
+    pattern: '\b\d{1,3}(?:\.\d{1,3}){3}:\d{2,5}\b'
+
+  - label: 'JDBC connection string'
+    pattern: '\bjdbc:[a-z]+://[A-Za-z0-9._:@/?&=;,+%-]+\b'
+    ignorecase: true
+
+  - label: 'PostgreSQL connection string'
+    pattern: '\bpostgres(?:ql)?://[^"''`\s]+'
+    ignorecase: true
+
+  - label: 'MySQL connection string'
+    pattern: '\bmysql://[^"''`\s]+'
+    ignorecase: true
+
+  - label: 'MongoDB connection string'
+    pattern: '\bmongodb(?:\+srv)?://[^"''`\s]+'
+    ignorecase: true
+
+  - label: 'Redis connection string'
+    pattern: '\bredis://[^"''`\s]+'
+    ignorecase: true
+
+  - label: 'Absolute http/https URL'
+    pattern: 'https?://[^\s"''`)<>]{4,}'
+
+  - label: 'WebSocket URL'
+    pattern: 'wss?://[^\s"''`)<>]{4,}'
+
+  - label: 'Generic scheme URL (ftp/smb/file/etc)'
+    pattern: '\b(?!https?://|wss?://)[a-zA-Z]{2,10}://[^\s"''`)<>]{4,}'
+
+  - label: 'API / REST / GraphQL path'
+    pattern: '["''`](/(?:api|v[0-9]+|rest|graphql|gql|internal|admin)/)[^"''`]*["''`]'
+
+  - label: 'ASP.NET endpoint (.asmx/.ashx/.aspx)'
+    pattern: '[A-Za-z0-9_/\-]{1,200}\.(?:asmx|ashx|aspx|asp)(?:[/?][^"''`\s]*)?'
+    ignorecase: true
+
+  - label: 'Server-side file / config reference'
+    pattern: '(web\.config|appsettings\.json|\.env\b|machineKey|connectionString|validationKey|decryptionKey)'
+    ignorecase: true
+
+  - label: 'Template-literal URL'
+    pattern: '`\$\{[^}]+\}/[^`]+`'
+
+  - label: 'Route definition (path / to / href)'
+    pattern: '(path|to|href)\s*[:=]\s*["''`](/[^"''`]{2,})["''`]'
+
+  - label: 'Environment variable'
+    pattern: 'process\.env\.[A-Z0-9_]+'
+
+  - label: 'Scheme-relative URL'
+    pattern: '["''][/]{2}[^"''/\s]+\.[A-Za-z]{2,}[^"''\s]*["'']'
+
+  - label: 'Relative URL path'
+    pattern: '["''](?:/|\.\./|\./)[^"''\s]{2,}["'']'
+
+  - label: 'Relative endpoint with extension'
+    pattern: '["''][A-Za-z0-9_/-]+/[^"''\s]+\.(?:php|asp|aspx|jsp|json|action|html|js|txt|xml|cfm|cfc)(?:[?#][^"''\s]*)?["'']'
+    ignorecase: true
+
+  - label: 'Relative REST endpoint'
+    pattern: '["''][A-Za-z0-9_-]+/[A-Za-z0-9_/-]{3,}(?:[?#][^"''\s]*)?["'']'
+
+  - label: 'Referenced web resource'
+    pattern: '["''][A-Za-z0-9_-]+\.(?:php|asp|aspx|jsp|json|action|html|js|txt|xml|cfm|cfc)(?:[?#][^"''\s]*)?["'']'
+    ignorecase: true
+
+  - label: 'Admin / privileged hints'
+    pattern: '(admin|superuser|internal|private|management|privileged|debug|staging)'
+    ignorecase: true
+
+  - label: 'TODO / FIXME / HACK dev note'
+    pattern: '\b(TODO|FIXME|HACK|XXX|BUG|NOTE|REMOVE|DEPRECATED)\b[:\- ]'
+    ignorecase: true
+
+  - label: 'Nested sourceMappingURL'
+    pattern: 'sourceMappingURL\s*=\s*\S+'
+
+  # Can be enabled if the source contains many useful comments
+  # - label: 'JavaScript comment'
+  #   pattern: '^\s*(//|/\*|\*|\*/)'
